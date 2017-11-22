@@ -1,0 +1,20 @@
+首先了解cpu 和 GPU工作原理
+
+cpu 每帧都会去检测场景中的物体判读他们是否能被渲染。一个物体渲染的条件很苛刻，例如 必须在摄像机的视图屏截头体内。不能看到的会被剔除。
+
+cpu 收集每一个需要渲染的物体的信息，让后把他们排列到一个叫做drawcall的命令中。 一个drawcall包含 一个单独的面片和 一个面片应该怎么渲染。 例如哪一个图片
+应该被使用。在这种情况下，有相同设置的物体会被合并成相同的dwawcall.合并不同的物体到同一个drawcall叫做 batch（批处理）；
+
+cpu 为每一个drawcall创建一个叫做 batch的数据包。batchs有可能比draw call 包含更多的数据，但是这种情况往往很可能会带来性能的问题。但是我们现在不考虑。
+
+对于每一个batch包含一个drawcall，cpu会做如下处理
+
+cpu会发送一个命令给GPU来改变一些叫做render state的变量集。这个命令就是大家熟知的setpass call. setpass call 告诉GPU 下一个要渲染的面片应该怎么
+设置。 setpass call 仅仅在渲染下一个面片时候需要改变当前的面片渲染状态才会发送。 
+
+cpu发送draw call 命令给GPU。这个 draw call知道GPU用当前定义的的setpass call的设置来渲染面片。
+
+在这种情况下 ，batch会需要调用很多的pass。 一个 pass 就是shader代码的一部分，一个新的pass需要一个渲染状态的改变。 对于batch中的每一个pass，cpu都必须
+发送一个新的 setpass call，必须再次发送给 draw call。
+
+
