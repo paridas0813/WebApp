@@ -1,0 +1,8 @@
+值类型比较
+ equals  由于 值类型重载了system.objet 的equals方法，所以 equals 方法比较相当于比较值是否相同
+ ReferenceEquals 总是false 没法重载
+ == 没有重载的 比较两个值是否按位相等。
+ 
+ 引用类型 主要是字符串
+ equals 由于已经重载的原因比较值是否相等 ==没有重载的比较引用地址 
+ string 字符串的不可变形通过池子来实现，线程安全 stringbuilder 线程不安全
