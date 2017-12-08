@@ -20,3 +20,6 @@ Manually forcing garbage collection
 最重要的是 GC堆 和 （load heap）加载堆 ，gc用于存储对象 受gc控制生命周期为创建到appdomai卸载，loadHeap 不受 不同的堆上又存不同的信息。最重要的信息就是元数据的相关的信息，也就是type对象，每个
 type在 load heap上体现为一个mathod table而method table 中记录了元数据的信息，例如基态类，静态字段，实现的接口，所有方法等。（具体参见 你必须知道的.net）
  
+关于静态类和静态字段 
+静态字段保存在方法表中，生命周期到appdomain卸载，一个类型无论创建多少对象静态字段在内存中只有一份，静态字段只能有静态构造函数完成初始化，静态构造函数确保在类型
+任何对象创建前或者静态字段方法被执行前执行。
