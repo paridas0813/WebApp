@@ -5,4 +5,12 @@
  
  引用类型 主要是字符串
  equals 由于已经重载的原因比较值是否相等 ==没有重载的比较引用地址 
+ 
+ 总结 在 equals 和referencEquals中都是通过 ==来判断比较引用地址是否相同的不同的是referenceEquals 是静态方法不同重写和重载，而 equals比较灵活
+ 可以重写，==可以通过重载的方式来实现比较（重载 == 的时候是否会对equals产生影响呢？）重写equals 的时候也要重写 GetHashcode
+ 
  string 字符串的不可变形通过池子来实现，线程安全 stringbuilder 线程不安全
+ 在生成字符串的时候会维护一个 hash表 key为字符串对应的值 value为对应的存储的地址。(动态生成的字符串不会添加到hash表里面)如果要比较值相等时候需要
+ public static string Intern(string str); 
+ public static string IsInterned(string str); 
+ 
