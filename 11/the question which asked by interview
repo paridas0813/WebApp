@@ -1,0 +1,17 @@
+释放资源
+Assetbundle Assetbundle.Unload(unloadAllLoadedObjects )
+When unloadAllLoadedObjects is false, compressed file data for assets inside the bundle will be unloaded, but any actual objects already loaded 
+from this bundle will be kept intact. Of course you won't be able to load any more objects from this bundle.
+当 unloadAllLoadedObjects  == false时候 bundle本身 就被卸载，已经 从这个bundle中加载出的资源成就保留，也就是引用bundle的资源都会保留。
+
+When unloadAllLoadedObjects is true, all objects that were loaded from this bundle will be destroyed as well. If there are game objects in your scene referencing those assets, 
+the references to them will become missing. 
+当 unloadAllLoadedObjects  == true 时候 bundle本身 就被卸载，所有的引用都会丢失
+
+所以当unloadAllLoadedObjects == true 很不安全可以用Resources.UnloadUnusedAssets（）来在合适的时间来释放资源
+
+GameObject  Destory后通过Resources.UnloadUnusedAssets（）来释放资源
+
+Rendertexture  Rendertexture.ReleaseTemporary()然后通过 Resources.UnloadUnusedAssets（）来释放资源
+
+
