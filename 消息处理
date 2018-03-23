@@ -1,0 +1,62 @@
+1 通过networkstream流从服务器得到byte[8192]长度的byte流后 设定一个包头长度为Head = 4（head里面会包含消息id cmd长度和消息体bodylen的长度），
+读取第一个byte得到消息cmd 的存储的长度为cmdlen = 2，让后通过特殊
+的读取方式 得到消息体的长度为 bodyLen = (buffer [1] << 16) | (buffer [2] << 8) | (buffer [3]);
+
+2 然后再次通过networkstream 流去读取cmd对应的id号 这里通过 code = (short)((buffer[0] & 0xff) | ((buffer[1] & 0xff) << 8)); 来得到消息id
+
+3. 读取消息长度也是通过一个networkstream 流去读取 这里通过protobuffer模式 由于protobuffer 跨平台读取方便的原因。拿到上面的消息id后通过本地有一个字典记录的消息id对应一个
+消息类 这个消息类我们之前通过属性获得了获得消息解析类。下面举出一个例子 
+
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)] 
+public class ProtoDeserialization:Attribute
+{
+    public Type DeserializationType;
+    public ProtoDeserialization(Type deserializationType)
+    {
+        DeserializationType = deserializationType;
+    }
+}
+
+ private void RegCommand(short code, BaseNetCommand cmd)
+    {
+        Type cmdType = cmd.GetType();
+        var atts = cmdType.GetCustomAttributes(typeof(ProtoDeserialization), false);
+        if (atts.Length < 1)
+        {
+            throw new Exception("Command :" + cmdType.Name + " doesn't bind a attribute ProtoDeserialization.");
+        }
+        ProtoDeserialization protoDeAtt = atts [0]  as ProtoDeserialization;
+
+        cmd.DeserializationType = protoDeAtt.DeserializationType;
+        commands [code] = cmd;
+        cmd.SetCode(code);
+        cmd.SetPlayer(player);
+    }
+
+[ProtoDeserialization(typeof(StartSingleMazeRes))]
+public class CommmandStartaSingelMaze : BaseNetCommand
+{
+    public override void OnResponse(object _response)
+    {
+        base.OnResponse(_response);
+
+         StartSingleMazeRes response = (StartSingleMazeRes)_response;
+
+        player.App.SendNotification(UnderGroundMazeNoti.NET_START_ENTER_SINGEL_MAZE, response.undergroundId, CommDir.RECEIVE);
+
+
+    }
+
+
+regCommand 中的 BaseNetCommand 就是我们在存储消息的时候对应的消息类  CommmandStartaSingelMaze 我们通过 
+var atts = cmdType.GetCustomAttributes(typeof(ProtoDeserialization), false);得到了 [ProtoDeserialization(typeof(StartSingleMazeRes))]
+然后 通过  cmd.DeserializationType = protoDeAtt.DeserializationType; 得到了StartSingleMazeRes（ps 这个类protobuffer自动生成的客户端本地也有）。因此
+我们很容易通过消息id来获得需要来读取消息体的类。然后 
+byte[] body = new byte[bodyLen];
+Array.Copy(buffer, body, bodyLen);
+//  MemoryStream ms = new MemoryStream(buffer, 0, bodyLen);
+ MemoryStream ms = new MemoryStream(body);
+ bodyObj = Serializer.Deserialize(cmd.DeserializationType, ms);
+ 让后通过memoryStream 流类反序列化出服务器返回的一个跟本地对应的protobuffer文件（也就是StartSingleMazeRes），通过本地的消息处理器来处理 cmd.OnResponse(response);
+ 这样一个消息解析的流程就清楚了。ps 消息处理器是先把服务器过来的消息保存到list当中，然后通过update方法来不断的处理。我们的消息处理器是一个继承了monobehavior的类，
+ 在update方法里面执行省去了自己写多线程去控制的麻烦.
