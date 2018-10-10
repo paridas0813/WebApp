@@ -1,0 +1,97 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using System.Text;
+using System.IO;
+using System.Reflection;
+using Communication;
+using Joypie;
+using System;
+
+public class ThriftToXmlTools
+{
+
+    static List<FileInfo> fileInfoList = new List<FileInfo>();
+
+    [MenuItem("Joypie/thrift to xml")]
+    public static void ChangeThrigtFormatToXMl()
+    {
+        string folderName = "/Resources/Model/Character/Player";
+
+        GetAllDirList(Application.dataPath + folderName);
+
+        int totalCount = fileInfoList.Count;
+        for (int i = 0; i < totalCount; i++)
+        {
+            string normalizeFileName = fileInfoList[i].FullName.PathNormalize();
+            string fileName = normalizeFileName.Substring(Application.dataPath.Length + 1, normalizeFileName.Length - 1 - Application.dataPath.Length);
+            EditorUtility.DisplayProgressBar(string.Concat("Progress  ", totalCount - i + "/" + totalCount), string.Concat("generate ", GetXmlPath(fileName)), ((float)i / (float)totalCount));
+            Convert(fileInfoList[i]);
+        }
+        EditorUtility.ClearProgressBar();
+    }
+
+    private static void GetAllDirList(string strBaseDir)
+    {
+        DirectoryInfo di = new DirectoryInfo(strBaseDir);
+        DirectoryInfo[] directories = di.GetDirectories();
+        for (int i = 0; i < directories.Length; i++)
+        {
+            string dirName = directories[i].FullName;
+            if (dirName.Contains("_Anibytes")) //找到以_Anibytes结尾的文件夹
+            {
+                //   Debug.LogError("dirName is:" + dirName);
+
+                var files = directories[i].GetFiles("*.bytes");
+                string filePureName = dirName.Substring(0, dirName.IndexOf("_Anibytes"));
+
+                string[] fileNameArr = filePureName.Split('\\');
+
+                foreach (var fileInfo in files)
+                {
+                    if (!fileInfo.Name.ToLower().Contains(fileNameArr[fileNameArr.Length - 1].ToLower())) //过滤掉含有文件夹名称的文件
+                    {
+                        //  Convert(fileInfo);
+                        fileInfoList.Add(fileInfo);
+
+                    }
+                }
+                //break; //TODO 按照常规找到以_Anibytes结尾的文件夹后应该跳出循环但是由于 一个文件夹下有可能有两个以"_Anibytes"结尾的所以不能这样做
+            }
+            GetAllDirList(dirName);
+        }
+    }
+
+    private static string GetXmlPath(string path)
+    {
+        return path.Replace(".bytes", ".xml");
+    }
+
+
+    static string filePath;
+    private static void Convert(FileInfo fileInfo)
+    {
+        filePath = fileInfo.FullName.PathNormalize();
+
+        byte[] bytes = File.ReadAllBytes(filePath);
+        if (bytes == null || bytes.Length == 0)
+        {
+            return;
+        }
+        FlySkillConfigTable skillConfigTable = new FlySkillConfigTable();
+        try
+        {
+            //ThriftSerialize.DeSerialize(skillConfigTable, bytes);
+            skillConfigTable = UXMLSerializer.SerializeFromXML(GetXmlPath(filePath).PathNormalize()) as FlySkillConfigTable;
+            UXMLSerializer.SerializeToXML(skillConfigTable, "FlySkillConfigTable", GetXmlPath(filePath).PathNormalize());
+            Debug.Log(filePath + ".xml make succeed");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("the file path which is" + filePath + "  deserialize faild  " + e);
+        }
+
+    }
+
+}
