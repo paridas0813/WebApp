@@ -1,0 +1,61 @@
+    UViewport* Viewport = NewObject<UViewport>();
+	Viewport->AddToRoot();
+	Viewport->TakeWidget();
+
+	ADirectionalLight* LightActor = Cast<ADirectionalLight>(Viewport->Spawn(ADirectionalLight::StaticClass()));
+	LightActor->GetRootComponent()->SetMobility(EComponentMobility::Movable);
+	LightActor->SetActorLocation(FVector(0, 0, 1000));
+	LightActor->SetActorRotation(FRotator(-45, 0, 0));
+
+	//加载引擎默认的天空球静态模型（Game目录表示在引擎安装目录content，Game目录对应的是工程的content目录，
+	//通过Game与 Engine目录就可以很好区分出是引擎默认资源还是自己引入的资源）
+	UStaticMesh* SkySphere = LoadObject<UStaticMesh>(NULL, TEXT("/Engine/MapTemplates/Sky/SM_SkySphere.SM_SkySphere"), NULL, LOAD_None, NULL);
+	//加载引擎天空材质
+	UMaterial* SkyMaterial = LoadObject<UMaterial>(NULL, TEXT("/Engine/EditorMaterials/PersonaSky.PersonaSky"), NULL, LOAD_None, NULL);
+	//加载引擎cubemap贴图
+	UTextureCube* DefaultTexture = LoadObject<UTextureCube>(NULL, TEXT("/Engine/MapTemplates/Sky/DaylightAmbientCubemap/DaylightAmbientCubemap"));
+	//创建动态材质实例
+	UMaterialInstanceDynamic* InstancedSkyMaterial = NewObject<UMaterialInstanceDynamic>(GetTransientPackage());
+	InstancedSkyMaterial->Parent = SkyMaterial;
+	InstancedSkyMaterial->SetTextureParameterValue(FName("SkyBox"), DefaultTexture);
+	InstancedSkyMaterial->SetScalarParameterValue(FName("CubemapRotation"), 0);
+	InstancedSkyMaterial->SetScalarParameterValue(FName("Intensity"), 2);
+	InstancedSkyMaterial->PostLoad();
+
+	AStaticMeshActor* StaticMeshActor = Cast<AStaticMeshActor>(Viewport->Spawn(AStaticMeshActor::StaticClass()));
+	StaticMeshActor->GetStaticMeshComponent()->SetMaterial(0, InstancedSkyMaterial);
+	StaticMeshActor->SetActorScale3D(FVector(100, 100, 100));
+
+	//加载工程对应的地板静态模型
+	UStaticMesh* FloorMesh = LoadObject<UStaticMesh>(NULL, TEXT("/Game/Geometry/Meshes/TemplateFloor.TemplateFloor"), NULL, LOAD_None, NULL);
+	StaticMeshActor->GetStaticMeshComponent()->SetStaticMesh(SkySphere);
+	AStaticMeshActor* FloorMeshActor = Cast<AStaticMeshActor>(Viewport->Spawn(AStaticMeshActor::StaticClass()));
+	FloorMeshActor->GetStaticMeshComponent()->SetStaticMesh(FloorMesh);
+
+	auto FloorSceneComp = NewObject<USceneComponent>();
+	FloorSceneComp->AttachTo(FloorMeshActor->GetRootComponent(), NAME_None);
+
+	UClass* CharacterClass = LoadClass<UObject>(nullptr, TEXT("/Game/MonsterCPP/Monster.Monster_C"));
+	//把角色添加到viewport上
+	AActor* PlayerActor = Viewport->Spawn(CharacterClass);
+    //把角色添加上场景上
+	//AActor* PlayerActor = GetWorld()->SpawnActor<AStaticMeshActor>();
+	PlayerActor->SetActorRotation(FRotator(0, 90, 0));
+	PlayerActor->AddToRoot();
+
+	Viewport->SetViewLocation(FVector(-200, 0, 120));
+	Viewport->SetViewRotation(FRotator(-20, 0, 0));
+
+	//UGameplayStatics::OpenLevel(Viewport->GetWorld(), TEXT("TestMap"));
+	FWorldContext* WorldContext = GEngine->GetWorldContextFromWorld(Viewport->GetWorld());
+	FString ErrorStr;
+	if (WorldContext)
+	{
+		GEngine->LoadMap(*WorldContext, FURL(TEXT("/Game/Maps/TestMap")), nullptr, ErrorStr);
+	}
+
+    BoxWidget = SNew(SBox).WidthOverride(800).HeightOverride(800).HAlign(HAlign_Center).VAlign(VAlign_Top)
+		[
+			Viewport->TakeWidget()
+		];
+	GetWorld()->GetGameViewport()->AddViewportWidgetContent(BoxWidget.ToSharedRef());
