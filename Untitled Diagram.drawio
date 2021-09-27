@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-27T02:07:21.315Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.54 Safari/537.36" etag="0AOZBpojpOxvolyP52Qm" version="15.3.4" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-27T02:14:27.802Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.54 Safari/537.36" etag="-qRNzQ7kFCuNgkmGtoNe" version="15.3.4" type="github">
   <diagram id="5KZ0ZVmHSSi7vN0LWAgk" name="Page-1">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -35,7 +35,7 @@
         <mxCell id="Va2hPkyqXW4dqxcvswAF-28" value="FRenderingThread" style="html=1;hachureGap=4;pointerEvents=0;" parent="1" vertex="1">
           <mxGeometry x="350" y="50" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Va2hPkyqXW4dqxcvswAF-29" value="FRunnable线程执行体，有几种下线程状态，子类 FRenderingThread。&lt;br&gt;&lt;br&gt;&lt;span style=&quot;text-align: center&quot;&gt;FRenderingThread 线程基类，引导FRunnable 并改变线程状态。&lt;br&gt;子类：FRunnableThreadWin，&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;FRunnableThreadAndroid，&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;FRunnableThreadApple，&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;FFakeThread，&lt;br&gt;window平台由&lt;/span&gt;FRunnableThreadWin等" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;hachureGap=4;pointerEvents=0;horizontal=1;" parent="1" vertex="1">
+        <mxCell id="Va2hPkyqXW4dqxcvswAF-29" value="FRunnable线程执行体，有几种下线程状态，&lt;br&gt;子类&lt;br&gt;FRenderingThread,&lt;br&gt;&lt;span style=&quot;text-align: center&quot;&gt;FQueuedThread&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;text-align: center&quot;&gt;FRenderingThread 线程基类，引导FRunnable 并改变线程状态。&lt;br&gt;子类：&lt;br&gt;FRunnableThreadWin，&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;window平台使用&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;FFakeThread非多线程情况下使用，&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;FRunnableThreadPThread，平台相关，有&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;FRunnableThreadAndroid&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;，&lt;/span&gt;&lt;span style=&quot;text-align: center&quot;&gt;&lt;br&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;hachureGap=4;pointerEvents=0;horizontal=1;" parent="1" vertex="1">
           <mxGeometry x="50" y="590" width="460" height="230" as="geometry" />
         </mxCell>
         <mxCell id="Va2hPkyqXW4dqxcvswAF-31" value="" style="endArrow=none;html=1;startSize=14;endSize=14;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;exitX=0;exitY=0;exitDx=0;exitDy=0;" parent="1" source="Va2hPkyqXW4dqxcvswAF-14" edge="1">
@@ -57,8 +57,8 @@
         <mxCell id="pEPiHS6GOgjcZePiM0A9-2" value="FThreadManager" style="html=1;hachureGap=4;pointerEvents=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="575" y="190" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="pEPiHS6GOgjcZePiM0A9-3" value="FRunnableThreadWin" style="whiteSpace=wrap;html=1;rounded=0;hachureGap=4;" vertex="1" parent="1">
-          <mxGeometry x="305" y="490" width="120" height="60" as="geometry" />
+        <mxCell id="pEPiHS6GOgjcZePiM0A9-3" value="&lt;span&gt;FRunnableThreadUnix&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=0;hachureGap=4;" vertex="1" parent="1">
+          <mxGeometry x="260" y="490" width="165" height="70" as="geometry" />
         </mxCell>
         <mxCell id="pEPiHS6GOgjcZePiM0A9-6" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="pEPiHS6GOgjcZePiM0A9-3">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -84,7 +84,7 @@
             <mxPoint x="500" y="430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="pEPiHS6GOgjcZePiM0A9-11" value="FFakeThread&lt;br&gt;&lt;font style=&quot;font-size: 8px&quot; color=&quot;#ff33ff&quot;&gt;不使用多线程情况下才使用&lt;/font&gt;" style="html=1;hachureGap=4;pointerEvents=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+        <mxCell id="pEPiHS6GOgjcZePiM0A9-11" value="FRunnableThreadApple" style="html=1;hachureGap=4;pointerEvents=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="630" y="497.5" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="pEPiHS6GOgjcZePiM0A9-12" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="pEPiHS6GOgjcZePiM0A9-11">
