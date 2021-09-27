@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-09-27T02:14:27.802Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.54 Safari/537.36" etag="-qRNzQ7kFCuNgkmGtoNe" version="15.3.4" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-27T02:17:31.555Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.54 Safari/537.36" etag="cwHgANM7_11_5lw53ZVx" version="15.3.4" type="github">
   <diagram id="5KZ0ZVmHSSi7vN0LWAgk" name="Page-1">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1342" dy="502" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -44,18 +44,8 @@
             <mxPoint x="260" y="100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="pEPiHS6GOgjcZePiM0A9-1" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;" edge="1" parent="1" target="pEPiHS6GOgjcZePiM0A9-2">
-          <mxGeometry x="-1" y="3" relative="1" as="geometry">
-            <mxPoint x="530" y="209.5" as="sourcePoint" />
-            <mxPoint x="630" y="210" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="600" y="210" />
-              <mxPoint x="600" y="210" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
         <mxCell id="pEPiHS6GOgjcZePiM0A9-2" value="FThreadManager" style="html=1;hachureGap=4;pointerEvents=0;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="575" y="190" width="110" height="50" as="geometry" />
+          <mxGeometry x="640" y="185" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="pEPiHS6GOgjcZePiM0A9-3" value="&lt;span&gt;FRunnableThreadUnix&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=0;hachureGap=4;" vertex="1" parent="1">
           <mxGeometry x="260" y="490" width="165" height="70" as="geometry" />
@@ -110,6 +100,13 @@
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="710" y="320" as="sourcePoint" />
             <mxPoint x="845" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pEPiHS6GOgjcZePiM0A9-19" value="Relation" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;" edge="1" parent="1">
+          <mxGeometry x="0.25" relative="1" as="geometry">
+            <mxPoint x="640" y="209.5" as="sourcePoint" />
+            <mxPoint x="530" y="209.5" as="targetPoint" />
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
