@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-09-30T10:22:17.544Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36" etag="iV74Z8RpUaI0xHOfHOnu" version="15.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-08T02:04:00.370Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36" etag="DhuFZVWD7Zst7N-A1qgc" version="15.3.8" type="github">
   <diagram id="5KZ0ZVmHSSi7vN0LWAgk" name="Page-1">
-    <mxGraphModel dx="2272" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2272" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -124,7 +124,7 @@
         <mxCell id="pEPiHS6GOgjcZePiM0A9-26" value="&lt;span style=&quot;color: rgb(18 , 18 , 18) ; font-family: , &amp;#34;blinkmacsystemfont&amp;#34; , &amp;#34;helvetica neue&amp;#34; , &amp;#34;pingfang sc&amp;#34; , &amp;#34;microsoft yahei&amp;#34; , &amp;#34;source han sans sc&amp;#34; , &amp;#34;noto sans cjk sc&amp;#34; , &amp;#34;wenquanyi micro hei&amp;#34; , sans-serif ; font-size: medium ; background-color: rgb(255 , 255 , 255)&quot;&gt;IQueuedWork&lt;/span&gt;" style="html=1;hachureGap=4;pointerEvents=0;align=center;verticalAlign=middle;" parent="1" vertex="1">
           <mxGeometry x="-120" y="50" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="pEPiHS6GOgjcZePiM0A9-32" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" source="pEPiHS6GOgjcZePiM0A9-33" edge="1" target="pEPiHS6GOgjcZePiM0A9-26">
+        <mxCell id="pEPiHS6GOgjcZePiM0A9-32" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" source="pEPiHS6GOgjcZePiM0A9-33" target="pEPiHS6GOgjcZePiM0A9-26" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="-80" y="250" as="sourcePoint" />
             <mxPoint x="-79.50000000000045" y="160" as="targetPoint" />
@@ -357,14 +357,17 @@
             <mxPoint x="952.9200000000001" y="1385.978" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="mZuI5YfO4ugI3_bFdf8C-1" value="&lt;span class=&quot;hljs-title&quot; style=&quot;margin: 0px ; padding: 0px ; color: rgb(163 , 21 , 21) ; font-family: &amp;#34;courier new&amp;#34; , sans-serif ; font-size: 14px ; background-color: rgb(245 , 245 , 245)&quot;&gt;TAsyncQueuedWork&lt;/span&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; , sans-serif ; font-size: 14px ; background-color: rgb(245 , 245 , 245)&quot;&gt; &lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="mZuI5YfO4ugI3_bFdf8C-1" value="&lt;span class=&quot;hljs-title&quot; style=&quot;margin: 0px ; padding: 0px ; color: rgb(163 , 21 , 21) ; font-family: &amp;#34;courier new&amp;#34; , sans-serif ; font-size: 14px ; background-color: rgb(245 , 245 , 245)&quot;&gt;TAsyncQueuedWork&lt;/span&gt;&lt;span style=&quot;font-family: &amp;#34;courier new&amp;#34; , sans-serif ; font-size: 14px ; background-color: rgb(245 , 245 , 245)&quot;&gt; &lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-120" y="182.5" width="160" height="57.5" as="geometry" />
         </mxCell>
-        <mxCell id="mZuI5YfO4ugI3_bFdf8C-3" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;entryX=0.591;entryY=1.04;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="pEPiHS6GOgjcZePiM0A9-26">
+        <mxCell id="mZuI5YfO4ugI3_bFdf8C-3" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;entryX=0.591;entryY=1.04;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="pEPiHS6GOgjcZePiM0A9-26" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="-55" y="180" as="sourcePoint" />
             <mxPoint x="30" y="170" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="daYlftZRLBy8Im_akfbx-1" value="一个FMeshBatch 拥有一组FMeshBatchElement 一个顶点工厂和一个材质实列，同一个FMeshBatch 所有的FMeshBatchElement 共享着相同的材质和顶点缓冲。" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="870" y="710" width="220" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
