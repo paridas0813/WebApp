@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-10-08T02:04:00.370Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36" etag="DhuFZVWD7Zst7N-A1qgc" version="15.3.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-11T13:03:45.308Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36" etag="q9uWbL0nxFPGmumH1Ga9" version="15.5.0" type="github">
   <diagram id="5KZ0ZVmHSSi7vN0LWAgk" name="Page-1">
-    <mxGraphModel dx="2272" dy="796" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2272" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -366,8 +366,11 @@
             <mxPoint x="30" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="daYlftZRLBy8Im_akfbx-1" value="一个FMeshBatch 拥有一组FMeshBatchElement 一个顶点工厂和一个材质实列，同一个FMeshBatch 所有的FMeshBatchElement 共享着相同的材质和顶点缓冲。" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="daYlftZRLBy8Im_akfbx-1" value="一个FMeshBatch 拥有一组FMeshBatchElement 一个顶点工厂和一个材质实列，同一个FMeshBatch 所有的FMeshBatchElement 共享着相同的材质和顶点缓冲。" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="870" y="710" width="220" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TnK4QFm4ZBeGK2jPUfU2-1" value="Fmaterial 相当于材质数据仓库，在渲染线程中通过它可以访问材质材质属性。而且不影响游戏线程运行。&lt;br&gt;存储了一个shader map 等。" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="1180" width="350" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
